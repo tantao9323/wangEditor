@@ -13,6 +13,7 @@ const config = {
         'italic',
         'underline',
         'strikeThrough',
+        'horizontalRule',
         'foreColor',
         'backColor',
         'link',

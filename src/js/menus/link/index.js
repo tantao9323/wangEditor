@@ -87,10 +87,10 @@ Link.prototype = {
                                 const $text = $('#' + inputTextId)
                                 const link = $link.val()
                                 const text = $text.val()
-                                this._insertLink(text, link)
+                                return this._insertLink(text, link)
 
                                 // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
-                                return true
+                                // return true
                             }
                         },
                         // 删除链接
@@ -141,10 +141,10 @@ Link.prototype = {
             checkResult = linkCheck(text, link)
         }
         if (checkResult === true) {
-            editor.cmd.do('insertHTML', `<a href="${link}" target="_blank">${text}</a>`)
-        } else {
-            alert(checkResult)
+            editor.cmd.do('insertHTML', `<a href="${link}" target="_blank">${text||link}</a>`)
+            return true
         }
+        return false
     },
 
     // 试图改变 active 状态

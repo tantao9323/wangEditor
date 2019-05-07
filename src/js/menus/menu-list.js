@@ -65,5 +65,8 @@ MenuConstructors.video = Video
 import Image from './img/index.js'
 MenuConstructors.image = Image
 
+import HorizontalRule from './horizontalRule/index.js'
+MenuConstructors.horizontalRule = HorizontalRule
+
 // 吐出所有菜单集合
 export default MenuConstructors

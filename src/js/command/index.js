@@ -100,6 +100,12 @@ Command.prototype = {
     // 封装 document.queryCommandSupported
     queryCommandSupported: function (name) {
         return document.queryCommandSupported(name)
+    },
+
+    // 自定义 insertHorizontalRule 事件
+    _insertHorizontalRule: function () {
+        this._execCommand('insertHorizontalRule')
+        this._insertHTML('<p><br></p>')
     }
 }
 

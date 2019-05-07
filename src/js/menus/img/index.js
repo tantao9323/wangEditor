@@ -38,9 +38,6 @@ Image.prototype = {
         const editor = this.editor
 
         // id
-        const width30 = getRandom('width-30')
-        const width50 = getRandom('width-50')
-        const width100 = getRandom('width-100')
         const delBtn = getRandom('del-btn')
 
         // tab 配置
@@ -49,10 +46,7 @@ Image.prototype = {
                 title: '编辑图片',
                 tpl: `<div>
                     <div class="w-e-button-container" style="border-bottom:1px solid #f1f1f1;padding-bottom:5px;margin-bottom:5px;">
-                        <span style="float:left;font-size:14px;margin:4px 5px 0 5px;color:#333;">最大宽度：</span>
-                        <button id="${width30}" class="left">30%</button>
-                        <button id="${width50}" class="left">50%</button>
-                        <button id="${width100}" class="left">100%</button>
+                        <input type="range" id="input-sidler" min="0" max="100" value="100"/>
                     </div>
                     <div class="w-e-button-container">
                         <button id="${delBtn}" class="gray left">删除图片</button>
@@ -60,39 +54,15 @@ Image.prototype = {
                 </div>`,
                 events: [
                     {
-                        selector: '#' + width30,
-                        type: 'click',
-                        fn: () => {
+                        selector: '#input-sidler',
+                        type: 'input propertychange',
+                        fn: function () {
                             const $img = editor._selectedImg
                             if ($img) {
-                                $img.css('max-width', '30%')
+                                $img.css('max-width', document.getElementById('input-sidler').value + '%')
                             }
                             // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
-                            return true
-                        }
-                    },
-                    {
-                        selector: '#' + width50,
-                        type: 'click',
-                        fn: () => {
-                            const $img = editor._selectedImg
-                            if ($img) {
-                                $img.css('max-width', '50%')
-                            }
-                            // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
-                            return true
-                        }
-                    },
-                    {
-                        selector: '#' + width100,
-                        type: 'click',
-                        fn: () => {
-                            const $img = editor._selectedImg
-                            if ($img) {
-                                $img.css('max-width', '100%')
-                            }
-                            // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
-                            return true
+                            return false
                         }
                     },
                     {
